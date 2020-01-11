@@ -23,13 +23,13 @@
 [snyk-url]: https://snyk.io/test/github/webboot/cli
 
 
-* [install](/#install)
-* [usage](/#usage)
-* [cli](/#cli)
-  * [generate](/#cli-generate)
-  * [verify](/#cli-verify)
-  * [sign](/#cli-sign)
-  * [release](/#cli-release)
+* [install](#install)
+* [usage](#usage)
+* [cli](#cli)
+  * [generate](#cli-generate)
+  * [verify](#cli-verify)
+  * [sign](#cli-sign)
+  * [release](#cli-release)
 
 ## <a name="install"></a>install
 
