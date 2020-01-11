@@ -9,7 +9,8 @@
   "scripts": {
     "start": "t",
     "format": "f -w --exclude dist docs",
-    "test": "t"
+    "test": "t",
+    "test:cli": "src/bin.mjs generate"
   },
   "bin": {
     "webboot": "src/bin.mjs"
@@ -26,7 +27,7 @@
     "@magic/fs": "0.0.2",
     "@magic/log": "0.1.3",
     "@magic/types": "0.1.8",
-    "@webboot/core": "file:../core"
+    "@webboot/core": "github:webboot/core"
   },
   "devDependencies": {
     "@magic/format": "0.0.7",
@@ -34,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webboot/core.git"
+    "url": "git+https://github.com/webboot/cli.git"
   },
   "bugs": {
-    "url": "https://github.com/webboot/core/issues"
+    "url": "https://github.com/webboot/cli/issues"
   },
   "keywords": [
     "webboot",
