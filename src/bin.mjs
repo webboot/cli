@@ -14,9 +14,11 @@ const cliArgs = {
     ['--dir', '--in', '-d'],
     ['--sri', '--sriHashFile', '--sri-hash-file'],
     ['--no-write', '--noWrite'],
+    ['--key', '--pub-key'],
+    ['--pass', '--phrase', '--passphrase'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean'],
-  single: ['--dir', 'sri'],
+  single: ['--dir', '--sri', '--pass', '--key'],
   default: {
     '--dir': path.join(process.cwd(), 'docs'),
     '--sri': 'sri-hashes.json',
@@ -28,11 +30,13 @@ const cliArgs = {
       '--dir': 'working directory for webboot.',
       '--sri': 'the name of the sri-hashes.json file generated. relative to --dir',
       '--no-write': 'do not write sri-hashes.json file',
+      '--key': 'sign and release: pub-key file. absolute path.',
+      '--passphrase': 'sign and release: passphrase to use.'
     },
     commands: {
       verify: 'verify the sri-hashes.json in --dir is correct',
-      generate: 'generate sri-hashes.json in -- dir',
-      sign: 'sign the sri-hashes.json',
+      generate: 'generate sri-hashes.json in --dir',
+      sign: 'sign the sri-hashes.json using your public ssh key and a passphrase.',
       publish: 'publish the current version of sri-hashes for server verification',
       clean: 'delete sri-hashes.json file',
     },
