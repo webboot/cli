@@ -22,8 +22,8 @@ const cliArgs = {
     '--sri': 'sri-hashes.json',
   },
   help: {
-    name: 'magic-glyphs',
-    header: 'generate webfont files from a directory of svgs.',
+    name: 'webboot',
+    header: 'generate, verify, sign and release subresource integrity hashes for your static page.',
     options: {
       '--dir': 'working directory for webboot.',
       '--sri': 'the name of the sri-hashes.json file generated. relative to --dir',
