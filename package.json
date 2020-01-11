@@ -1,0 +1,55 @@
+{
+  "name": "@webboot/cli",
+  "version": "0.0.1",
+  "author": "Wizards & Witches @ Webboot DAO",
+  "description": "generate, verify, sign and release subresource integrity hashes for your static page.",
+  "license": "AGPL-3.0",
+  "private": true,
+  "main": "src/index.mjs",
+  "scripts": {
+    "start": "t",
+    "format": "f -w --exclude dist docs",
+    "test": "t"
+  },
+  "bin": {
+    "webboot": "src/bin.mjs"
+  },
+  "engines": {
+    "node": ">=13.5.0"
+  },
+  "engineString": true,
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@magic/cli": "0.0.17",
+    "@magic/fs": "0.0.2",
+    "@magic/log": "0.1.3",
+    "@magic/types": "0.1.8",
+    "@webboot/core": "file:../core"
+  },
+  "devDependencies": {
+    "@magic/format": "0.0.7",
+    "@magic/test": "github:magic/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webboot/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webboot/core/issues"
+  },
+  "keywords": [
+    "webboot",
+    "sri",
+    "subresource",
+    "integriy",
+    "cli"
+  ],
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
+  ]
+}
