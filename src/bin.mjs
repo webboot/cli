@@ -16,6 +16,7 @@ const cliArgs = {
     ['--no-write', '--noWrite'],
     ['--key', '--pub-key'],
     ['--pass', '--phrase', '--passphrase'],
+    ['--user', '--username', '--name'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean'],
   single: ['--dir', '--sri', '--pass', '--key'],
@@ -31,7 +32,8 @@ const cliArgs = {
       '--sri': 'the name of the sri-hashes.json file generated. relative to --dir',
       '--no-write': 'do not write sri-hashes.json file',
       '--key': 'sign and release: pub-key file. absolute path.',
-      '--passphrase': 'sign and release: passphrase to use.'
+      '--passphrase': 'sign and release: passphrase to use.',
+      '--user': 'sign and release: the name to publish as.',
     },
     commands: {
       verify: 'verify the sri-hashes.json in --dir is correct',
