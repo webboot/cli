@@ -23,7 +23,7 @@
     "src"
   ],
   "dependencies": {
-    "@magic/cli": "0.0.17",
+    "@magic/cli": "0.0.18",
     "@magic/fs": "0.0.2",
     "@magic/log": "0.1.3",
     "@magic/types": "0.1.9",
