@@ -16,10 +16,10 @@ const cliArgs = {
     ['--no-write', '--noWrite'],
     ['--public-key', '--pub-key', '--key', '-k'],
     ['--passphrase', '--phrase', '--pass', '-p'],
-    ['--user', '--username', '--name', '-u', '-n'],
+    ['--username', '--user', '--user-name', '--name', '-u', '-n'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean'],
-  single: ['--dir', '--sri', '--pass', '--key'],
+  single: ['--dir', '--sri', '--pass', '--key', '--username'],
   default: {
     '--dir': path.join(process.cwd(), 'docs'),
     '--sri': 'sri-hashes.json',
