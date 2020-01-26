@@ -3,20 +3,21 @@
 import path from 'path'
 
 import cli from '@magic/cli'
+import error from '@magic/error'
 import log from '@magic/log'
 import is from '@magic/types'
 
 import boot from './index.mjs'
 
 const cliArgs = {
+  name: 'webboot',
   options: [
     ['--help', '-help', 'help', '--h', '-h'],
     ['--dir', '--in', '-d'],
     ['--sri', '--sriHashFile', '--sri-hash-file'],
     ['--no-write', '--noWrite'],
-    ['--public-key', '--pub-key', '--key', '-k'],
-    ['--passphrase', '--phrase', '--pass', '-p'],
     ['--username', '--user', '--user-name', '--name', '-u', '-n'],
+    ['--homepage', '--url', '--domain'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean'],
   single: ['--dir', '--sri', '--pass', '--key', '--username'],
@@ -66,11 +67,15 @@ webboot clean
 const run = async () => {
   const { args, commands } = cli(cliArgs)
 
-  const booted = await boot(args, commands)
-
-  if (is.error(booted)) {
-    log.error(booted.code, booted.message)
-    process.exit()
+  try {
+    const booted = await boot(args, commands)
+    if (is.error(booted)) {
+      throw booted
+    }
+  } catch (e) {
+    e = error(e)
+    log.error(e.code, e.message)
+    process.exit(1)
   }
 
   log.success('webboot done')
