@@ -4,13 +4,15 @@
   "author": "Wizards & Witches @ Webboot DAO",
   "description": "generate, verify, sign and release subresource integrity hashes for your static page.",
   "license": "AGPL-3.0",
+  "homepage": "https://webboot.github.io/cli",
   "private": true,
   "main": "src/index.mjs",
   "scripts": {
     "start": "t",
     "format": "f -w --exclude dist docs",
     "test": "t",
-    "test:cli": "src/bin.mjs generate"
+    "test:cli": "src/bin.mjs generate",
+    "sign": "src/bin.mjs generate"
   },
   "bin": {
     "webboot": "src/bin.mjs"
@@ -23,15 +25,17 @@
     "src"
   ],
   "dependencies": {
-    "@magic/cli": "0.0.17",
-    "@magic/fs": "0.0.2",
+    "@magic/cli": "0.0.22",
+    "@magic/error": "0.0.5",
+    "@magic/fs": "0.0.4",
     "@magic/log": "0.1.3",
-    "@magic/types": "0.1.9",
-    "@webboot/core": "github:webboot/core"
+    "@magic/types": "0.1.11",
+    "@webboot/core": "github:webboot/core",
+    "@webboot/crypto": "github:webboot/crypto"
   },
   "devDependencies": {
     "@magic/format": "0.0.7",
-    "@magic/test": "0.1.32"
+    "@magic/test": "0.1.33"
   },
   "repository": {
     "type": "git",
