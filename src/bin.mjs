@@ -17,6 +17,7 @@ const cliArgs = {
     ['--sri', '--sriHashFile', '--sri-hash-file'],
     ['--no-write', '--noWrite'],
     ['--username', '--user', '--user-name', '--name', '-u', '-n'],
+    ['--secrets-file', '--secret-file', '--pass-file'],
     ['--homepage', '--url', '--domain'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean'],
