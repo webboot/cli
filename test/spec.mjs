@@ -7,5 +7,5 @@ const srcPath = path.join(process.cwd(), 'src', 'bin.mjs')
 
 export default [
   { fn: fs.exists(srcPath), expect: true, info: 'src/bin.mjs exists' },
-  { fn: () => webboot, expect: is.fn, info: 'src/index.mjs exports a function'}
+  { fn: () => webboot, expect: is.fn, info: 'src/index.mjs exports a function' },
 ]
