@@ -22,22 +22,12 @@ export const boot = async (state, commands) => {
   }
 
   // always generate newest state
-  state = await webboot.generate(state)
+  state.files = await webboot.generate(state)
 
-  if (is.error(state)) {
-    return state
-  }
-
-  if (!state.noWrite) {
-    const written = await webboot.write(state)
-
-    if (is.error(written)) {
-      return written
-    }
-  }
+  await webboot.write(state)
 
   // always verify
-  state = await webboot.verify(state)
+  await webboot.verify(state)
 
   if (commands.sign) {
     state = await webboot.sign(state)
@@ -46,12 +36,9 @@ export const boot = async (state, commands) => {
     }
   }
 
-  if (commands.release) {
-    state = await webboot.release(state)
-    if (is.error(state)) {
-      return state
-    }
-  }
+  // if (commands.release) {
+  //   state = await webboot.release(state)
+  // }
 
   return state
 }
