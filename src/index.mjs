@@ -1,9 +1,6 @@
 import path from 'path'
 
-import log from '@magic/log'
-import is from '@magic/types'
-
-import webboot from '@webboot/core'
+import * as webboot from './tasks/index.mjs'
 
 export const boot = async (state, commands) => {
   if (!path.isAbsolute(state.dir)) {
@@ -15,30 +12,31 @@ export const boot = async (state, commands) => {
   }
 
   if (commands.clean) {
-    const deleted = await webboot.clean(state)
-    if (is.error(deleted)) {
-      return deleted
-    }
+    // delete the sri-hashes.json file
+    await webboot.clean(state)
   }
+
+  // import @webboot public key
+  await webboot.prepare()
 
   // always generate newest state
   state.files = await webboot.generate(state)
 
-  await webboot.write(state)
+  // write sriHashes to file, return the hashes as an object
+  state.sriHashes = await webboot.write(state)
 
-  // always verify
+  // always verify sriHashes before continuing
   await webboot.verify(state)
 
   if (commands.sign) {
-    state = await webboot.sign(state)
-    if (is.error(state)) {
-      return state
+    // sign the page using local gpg lib
+    state.signed = await webboot.sign(state)
+
+    if (commands.release) {
+      // release signed hashes to the @webboot network.
+      state.release = await webboot.release(state.signed)
     }
   }
-
-  // if (commands.release) {
-  //   state = await webboot.release(state)
-  // }
 
   return state
 }
