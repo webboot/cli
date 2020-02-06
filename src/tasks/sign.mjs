@@ -1,16 +1,9 @@
-import os from 'os'
-import path from 'path'
-
-import cli from '@magic/cli'
-import error from '@magic/error'
-import fs from '@magic/fs'
-import is from '@magic/types'
 import log from '@magic/log'
 
 import crypto from '@webboot/crypto'
 import webbootKeys from '@webboot/keys'
 
-import { exec, getDomain, getEmail, getGitHost, getPgpKey, getVersion } from '../lib/index.mjs'
+import { getDomain, getEmail, getGitHost, getPgpKey, getVersion } from '../lib/index.mjs'
 
 const cwd = process.cwd()
 
@@ -31,23 +24,24 @@ export const sign = async state => {
 
   const version = await getVersion(state)
 
+  const key = await crypto.gpg.export(fingerprint)
+
   const toSign = {
-    hashes,
     domain,
-    version,
-    user: state.username,
+    fingerprint,
+    hashes,
     git,
+    key,
+    user: state.username,
+    version,
   }
 
   const sig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(toSign))
-
-  const key = await crypto.gpg.export(fingerprint)
 
   log.timeTaken(startTime, '@webboot/sign took:')
 
   return {
     sig,
-    key,
-    fingerprint,
+    signed: toSign,
   }
 }
