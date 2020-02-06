@@ -1,15 +1,10 @@
-import path from 'path'
-
 import error from '@magic/error'
 import fs from '@magic/fs'
 import log from '@magic/log'
-import is from '@magic/types'
-
-import crypto from '@webboot/crypto'
 
 import { errorMessages } from '../errorMessages.mjs'
 
-import { getFiles, json, threeWayVerifyFile } from '../lib/index.mjs'
+import webboot from '@webboot/core'
 
 const libName = '@webboot/verify'
 
@@ -20,10 +15,10 @@ export const verify = async state => {
 
   // that file just got written, reading from filesystem to make sure the written content is valid
   const sriHashString = await fs.readFile(state.sri, 'utf8')
-  const sriHashes = json.parse(sriHashString)
+  const sriHashes = webboot.json.parse(sriHashString)
 
   // threeWayVerify reads the file from disk and from state, then verifies hashes.
-  const mismatches = state.files.filter(threeWayVerifyFile(sriHashes)).map(f => f.file)
+  const mismatches = state.files.filter(webboot.threeWayVerifyFile(sriHashes)).map(f => f.file)
 
   if (mismatches.length) {
     const mismatchString = mismatches.join('\n')

@@ -1,3 +1,3 @@
-import { getFiles } from '../lib/index.mjs'
+import webboot from '@webboot/core'
 
-export const generate = state => getFiles(state)
+export const generate = state => webboot.getFiles(state)

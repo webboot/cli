@@ -1,5 +1,3 @@
-import path from 'path'
-
 import fs from '@magic/fs'
 import log from '@magic/log'
 
