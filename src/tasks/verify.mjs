@@ -15,7 +15,7 @@ export const verify = async state => {
 
   // that file just got written, reading from filesystem to make sure the written content is valid
   const sriHashString = await fs.readFile(state.sri, 'utf8')
-  const sriHashes = webboot.json.parse(sriHashString)
+  const sriHashes = JSON.parse(sriHashString)
 
   // threeWayVerify reads the file from disk and from state, then verifies hashes.
   const mismatches = state.files.filter(webboot.threeWayVerifyFile(sriHashes)).map(f => f.file)
