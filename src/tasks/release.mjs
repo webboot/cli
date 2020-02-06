@@ -49,7 +49,7 @@ export const release = async signed => {
       },
     }
 
-    const response = await webboot.httpRequest('http://localhost:8080/v1/publish/', options)
+    const response = await webboot.httpRequest('http://localhost:8080/v1/release/', options)
 
     console.log({ response })
   }
