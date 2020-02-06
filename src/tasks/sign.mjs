@@ -10,7 +10,7 @@ import log from '@magic/log'
 import crypto from '@webboot/crypto'
 import webbootKeys from '@webboot/keys'
 
-import { exec, getDomain, getEmail, getGitHost, getPgpKey } from '../lib/index.mjs'
+import { exec, getDomain, getEmail, getGitHost, getPgpKey, getVersion } from '../lib/index.mjs'
 
 const cwd = process.cwd()
 
@@ -21,7 +21,7 @@ export const sign = async state => {
 
   const email = await getEmail(state)
 
-  const host = await getGitHost(state)
+  const git = await getGitHost(state)
 
   const { key: fingerprint } = await getPgpKey(state)
 
@@ -29,7 +29,17 @@ export const sign = async state => {
 
   const hashes = JSON.stringify(state.sriHashes)
 
-  const sig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(hashes))
+  const version = await getVersion(state)
+
+  const toSign = {
+    hashes,
+    domain,
+    version,
+    user: state.username,
+    git,
+  }
+
+  const sig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(toSign))
 
   const key = await crypto.gpg.export(fingerprint)
 
@@ -37,9 +47,6 @@ export const sign = async state => {
 
   return {
     sig,
-    hashes,
-    user: state.username,
-    domain,
     key,
     fingerprint,
   }
