@@ -40,7 +40,6 @@ export const release = async signed => {
   if (wantsToSend) {
     const body = JSON.stringify(signed)
 
-    console.log({signed, body})
     const options = {
       body,
       method: 'POST',
