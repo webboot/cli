@@ -26,27 +26,26 @@ export const httpRequest = (url, options = {}) =>
 
     const handler = url.startsWith('https') ? https : http
 
-    const req = handler
-      .request(url, opts, res => {
-        if (res.statusCode > 399) {
-          reject(error(errors.HTTP_STATUSCODE(res)))
-          return
+    const req = handler.request(url, opts, res => {
+      if (res.statusCode > 399) {
+        reject(error(errors.HTTP_STATUSCODE(res)))
+        return
+      }
+
+      let data = ''
+
+      res.on('data', d => {
+        data += d
+      })
+
+      res.on('end', () => {
+        if (json) {
+          data = JSON.parse(data)
         }
 
-        let data = ''
-
-        res.on('data', d => {
-          data += d
-        })
-
-        res.on('end', () => {
-          if (json) {
-            data = JSON.parse(data)
-          }
-
-          resolve(data)
-        })
+        resolve(data)
       })
+    })
 
     req.on('error', reject)
 
