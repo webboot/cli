@@ -1,12 +1,4 @@
-import error from '@magic/error'
-import is from '@magic/types'
-
-import { httpGet } from './httpGet.mjs'
-import * as json from './json.mjs'
-
-import { errorMessages } from '../errorMessages.mjs'
-
-const libName = '@webboot/cli.lib.getGitPgpKeys'
+import { httpRequest } from './httpRequest.mjs'
 
 export const getGitPgpKeys = async ({ username, host = 'github' }) => {
   const apiPath = '/'
@@ -17,7 +9,7 @@ export const getGitPgpKeys = async ({ username, host = 'github' }) => {
     host = 'https://gitlab.com/api/v4/users/'
 
     // we need the user id for gitlab
-    const userData = await httpGet(`${host}?username=${username}`)
+    const userData = await httpRequest(`${host}?username=${username}`)
     username = userData.id
   } else {
     log.error('W_HOST_NOT_SUPPORTED', 'seems you input a custom git domain. support coming soon.')
@@ -27,8 +19,8 @@ export const getGitPgpKeys = async ({ username, host = 'github' }) => {
 
   try {
     const url = `${host}${username}/gpg_keys`
-    const keys = await httpGet(url)
-    return json.parse(keys)
+    const keys = await httpRequest(url)
+    return JSON.parse(keys)
   } catch (e) {
     console.log('name', e.name, 'code', e.code)
 

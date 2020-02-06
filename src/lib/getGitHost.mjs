@@ -1,15 +1,7 @@
 import child_process from 'child_process'
-import { URL } from 'url'
 
 import cli from '@magic/cli'
-import error from '@magic/error'
 import log from '@magic/log'
-import is from '@magic/types'
-
-import { httpGet } from './httpGet.mjs'
-import * as json from './json.mjs'
-
-import { errorMessages } from '../errorMessages.mjs'
 
 const libName = '@webboot/cli.lib.getGitPgpKeys'
 
