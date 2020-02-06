@@ -1,3 +1,4 @@
+import http from 'http'
 import https from 'https'
 import URL from 'url'
 
@@ -10,28 +11,27 @@ const libName = '@webboot/cli.lib.httpGet'
 
 export const errors = errorMessages(libName)
 
-export const fetch = (url, options = {}) =>
+export const httpRequest = (url, options = {}) =>
   new Promise((resolve, reject) => {
     if (is.empty(url)) {
       reject(errors.HTTP_URL_EMPTY)
       return
     }
 
-    const { body, json, ...opts } = options
+    const { body, json, headers = {}, ...opts } = options
 
-    opts.headers['User-Agent'] = 'webboot'
+    headers['User-Agent'] = 'webboot'
 
-    https
+    opts.headers = headers
+
+    const handler = url.startsWith('https') ? https : http
+
+    const req = handler
       .request(url, opts, res => {
         if (res.statusCode > 399) {
           reject(error(errors.HTTP_STATUSCODE(res)))
           return
         }
-
-        // TODO: fix to get POST working
-        // if (body) {
-        // await res.write(body)
-        // }
 
         let data = ''
 
@@ -47,5 +47,12 @@ export const fetch = (url, options = {}) =>
           resolve(data)
         })
       })
-      .on('error', reject)
+
+    req.on('error', reject)
+
+    if (body) {
+      req.write(body)
+    }
+
+    req.end()
   })
