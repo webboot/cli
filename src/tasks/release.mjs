@@ -1,6 +1,8 @@
 import cli from '@magic/cli'
 import log from '@magic/log'
 
+import { httpRequest } from '../lib/index.mjs'
+
 const libName = '@webboot/release'
 
 export const release = async signed => {
@@ -29,23 +31,35 @@ export const release = async signed => {
     }),
   )
 
-  log.warn('the data above will be sent to https://api.webboot.org')
+  log('the data above will be sent to https://api.webboot.org')
   log(`@webboot will verify the hashes using ${signed.domain} and then publish this data.`)
-  log('this can not be undone.')
+  log.warn('this can not be undone.')
 
   const wantsToSend = await cli.prompt('Do you want to publish this data?', { yesNo: true })
 
   if (wantsToSend) {
-    const { sig, key, user, domain } = signed
+    const { sig, key, user, domain, version, fingerprint } = signed
 
-    const data = JSON.stringify({
+    const body = JSON.stringify({
       sig,
       key,
       user,
       domain,
+      version,
+      fingerprint,
     })
 
-    console.log({ data })
+    const options = {
+      body,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const response = await httpRequest('http://localhost:8080/v1/publish/', options)
+
+    console.log({ response })
   }
 
   log.error('E_NOT_IMPLEMENTED', `${libName} not implemented yet.`)
