@@ -20,8 +20,6 @@ export const sign = async state => {
 
   const domain = await webboot.getDomain(state)
 
-  const hashes = JSON.stringify(state.sriHashes)
-
   const version = await webboot.getVersion(state)
 
   const key = await crypto.gpg.export(fingerprint)
@@ -29,7 +27,7 @@ export const sign = async state => {
   const toSign = {
     domain,
     fingerprint,
-    hashes,
+    hashes: state.sriHashes,
     git,
     key,
     user: state.username,
