@@ -22,6 +22,4 @@ const relativePathOptions = {
   cwd: process.cwd(),
 }
 
-export default [
-  { fn: tryCatch(verify), expect: is.error, info: 'errors without a state' },
-]
+export default [{ fn: tryCatch(verify), expect: is.error, info: 'errors without a state' }]

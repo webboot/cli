@@ -11,24 +11,24 @@ export const release = async signed => {
   log.success('\n@webboot has collected all needed data.\n')
 
   // await Promise.all(
-    // Object.entries(signed).map(async ([key, val]) => {
-      // if (key === 'hashes') {
-        // log.success(key, JSON.stringify(JSON.parse(val), null, 2))
-        // return
-      // }
+  // Object.entries(signed).map(async ([key, val]) => {
+  // if (key === 'hashes') {
+  // log.success(key, JSON.stringify(JSON.parse(val), null, 2))
+  // return
+  // }
 
-      // if (key === 'sig') {
-        // log.success('sig', 'signed and encrypted sri hashes')
-        // return
-      // }
+  // if (key === 'sig') {
+  // log.success('sig', 'signed and encrypted sri hashes')
+  // return
+  // }
 
-      // if (key === 'key') {
-        // log.success('key', 'your pgp public key')
-        // return
-      // }
+  // if (key === 'key') {
+  // log.success('key', 'your pgp public key')
+  // return
+  // }
 
-      // log.success(key, val.split('\n')[0])
-    // }),
+  // log.success(key, val.split('\n')[0])
+  // }),
   // )
 
   log('the data above will be sent to https://api.webboot.org')
