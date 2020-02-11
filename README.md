@@ -78,5 +78,8 @@ webboot release --dir docs
 
 ### changelog
 
-#### 0.0.1
+#### 0.0.1-alpha.0
+preview release.
+
+#### 0.0.1 - unreleased
 first release
