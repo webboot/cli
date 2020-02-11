@@ -81,5 +81,8 @@ webboot release --dir docs
 #### 0.0.1-alpha.0
 preview release.
 
+#### 0.0.1-alpha.1
+use npm packages for @webboot dependencies
+
 #### 0.0.1 - unreleased
 first release
