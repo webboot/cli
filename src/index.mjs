@@ -28,7 +28,7 @@ export const boot = async (state, commands) => {
   // always verify sriHashes before continuing
   await webboot.verify(state)
 
-  if (commands.sign) {
+  if (commands.sign || commands.release) {
     // sign the page using local gpg lib
     state.signed = await webboot.sign(state)
 
