@@ -10,9 +10,9 @@ export const release = async signed => {
 
   log.success('\n@webboot has collected all needed data.\n')
 
-  log.warn('DATA WILL BE PUBLISHED', 'the following data will be sent to https://api.webboot.org')
+  log.warn('DATA WILL BE PUBLISHED', 'and sent to https://api.webboot.org')
 
-  log.annotate('-------------------------------------------------------\n')
+  log.annotate('\n-------------------------------------------------------')
 
   // print the signed object
   Object.entries(signed.signed).map(([key, value]) => {
@@ -24,7 +24,8 @@ export const release = async signed => {
   log(`@webboot will verify the hashes using ${signed.domain} and then publish this data.`)
   log.warn('this can not be undone.')
 
-  const wantsToSend = await cli.prompt('Do you want to publish this data? (y/N) : ', { yesNo: true })
+  const releasePrompt = 'Do you want to publish this data? (y/N) : '
+  const wantsToSend = await cli.prompt(releasePrompt, { yesNo: true })
 
   if (wantsToSend) {
     const body = JSON.stringify(signed)
