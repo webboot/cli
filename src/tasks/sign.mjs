@@ -18,28 +18,36 @@ export const sign = async state => {
 
   const { key: fingerprint } = await webboot.getPgpKey(state)
 
-  const domain = await webboot.getDomain(state)
+  const host = await webboot.getDomain(state)
 
   const version = await webboot.getVersion(state)
 
   const key = await crypto.gpg.export(fingerprint)
 
   const toSign = {
-    domain,
+    host,
     fingerprint,
     hashes: state.sriHashes,
-    git,
-    key,
-    user: state.username,
     version,
   }
 
   const sig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(toSign))
+
+
+  const meta = {
+    key,
+    git,
+    user: state.username,
+  }
+
+  const metaSig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(meta))
 
   log.timeTaken(startTime, '@webboot/sign took:')
 
   return {
     sig,
     signed: toSign,
+    meta,
+    metaSig,
   }
 }
