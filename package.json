@@ -37,7 +37,7 @@
     "@webboot/core": "github:webboot/core",
     "@webboot/crypto": "github:webboot/crypto",
     "@webboot/keys": "0.0.1-alpha.0",
-    "@webboot/magic-theme": "0.0.2"
+    "@webboot/magic-theme": "0.0.4"
   },
   "devDependencies": {
     "@magic-modules/gdpr": "0.0.14",
