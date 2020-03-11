@@ -38,9 +38,9 @@ export const release = async signed => {
       },
     }
 
-    const response = await webboot.httpRequest('http://localhost:8080/v1/release/', options)
+    const response = await webboot.httpRequest('http://localhost:8080/api/v1/release/', options)
 
-    console.log('api response:', response)
+    log('api response:', response)
   }
 
   log.error('E_NOT_IMPLEMENTED', `${libName} not implemented yet.`)
