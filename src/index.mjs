@@ -2,6 +2,8 @@ import path from 'path'
 
 import * as webboot from './tasks/index.mjs'
 
+const cwd = process.cwd()
+
 export const boot = async (state, commands) => {
   if (!path.isAbsolute(state.dir)) {
     state.dir = path.join(cwd, state.dir)
