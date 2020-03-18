@@ -3,6 +3,7 @@ export default {
   WEB_ROOT: '/cli/',
   PUBLIC: 'docs',
   URL: 'webboot.org/cli',
-  THEME: '@webboot/magic-theme',
+  THEME: ['reader', '@webboot/magic-theme'],
+
   HOIST: ['LightSwitch', 'Gdpr'],
 }
