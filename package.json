@@ -1,6 +1,6 @@
 {
   "name": "@webboot/cli",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "author": "Wizards & Witches @ Webboot DAO",
   "description": "generate, verify, sign and release subresource integrity hashes for your static page.",
   "license": "AGPL-3.0",
