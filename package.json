@@ -31,7 +31,7 @@
     "@magic-modules/git-badges": "0.0.9",
     "@magic/cli": "0.0.23",
     "@magic/error": "0.0.5",
-    "@magic/fs": "0.0.4",
+    "@magic/fs": "0.0.5",
     "@magic/log": "0.1.4",
     "@magic/types": "0.1.11",
     "@webboot/core": "github:webboot/core",
