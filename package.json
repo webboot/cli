@@ -29,9 +29,9 @@
   ],
   "dependencies": {
     "@magic-modules/git-badges": "0.0.9",
-    "@magic/cli": "0.0.23",
+    "@magic/cli": "0.0.24",
     "@magic/error": "0.0.5",
-    "@magic/fs": "0.0.4",
+    "@magic/fs": "0.0.5",
     "@magic/log": "0.1.4",
     "@magic/types": "0.1.11",
     "@webboot/core": "github:webboot/core",
@@ -39,13 +39,13 @@
     "@webboot/keys": "0.0.1-alpha.0"
   },
   "devDependencies": {
-    "@magic-modules/gdpr": "0.0.14",
+    "@magic-modules/gdpr": "0.0.15",
     "@magic-modules/light-switch": "0.0.5",
     "@magic-modules/pre": "0.0.7",
     "@magic-themes/reader": "0.0.4",
-    "@magic/core": "0.0.60",
-    "@magic/format": "0.0.7",
-    "@magic/test": "0.1.38",
+    "@magic/core": "0.0.67",
+    "@magic/format": "0.0.8",
+    "@magic/test": "0.1.41",
     "@webboot/magic-theme": "0.0.4"
   },
   "repository": {
