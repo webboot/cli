@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "@magic-modules/git-badges": "0.0.9",
-    "@magic/cli": "0.0.24",
+    "@magic/cli": "0.0.25",
     "@magic/error": "0.0.5",
     "@magic/fs": "0.0.5",
     "@magic/log": "0.1.4",
