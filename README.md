@@ -87,5 +87,8 @@ use npm packages for @webboot dependencies
 #### 0.0.1-alpha.2
 update dependencies
 
+#### 0.0.1-alpha.3
+update dependencies
+
 #### 0.0.1 - unreleased
 first release
