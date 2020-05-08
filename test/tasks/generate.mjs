@@ -18,7 +18,7 @@ const before = id => async () => {
   await fs.mkdirp(dir)
 
   await Promise.all(
-    testFiles.map(async (f, i) => await fs.writeFile(path.join(dir, 'file_' + (i + 1)), f)),
+    testFiles.map(async (f, i) => await fs.writeFile(path.join(dir, 'file_' + (i + 1)), f.content)),
   )
 
   return async () => {
