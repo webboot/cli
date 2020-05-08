@@ -33,7 +33,6 @@ export const sign = async state => {
 
   const sig = await crypto.gpg.sign(fingerprint, webbootKeys.fingerprint, JSON.stringify(toSign))
 
-
   const meta = {
     key,
     git,
