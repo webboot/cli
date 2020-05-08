@@ -21,7 +21,7 @@
     "webboot": "src/bin.mjs"
   },
   "engines": {
-    "node": ">=13.5.0"
+    "node": ">=14.2.0"
   },
   "engineString": true,
   "files": [
