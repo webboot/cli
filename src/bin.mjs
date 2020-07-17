@@ -20,7 +20,7 @@ const cliArgs = {
     ['--secrets-file', '--secret-file', '--pass-file'],
     ['--homepage', '--url', '--domain'],
   ],
-  commands: ['verify', ['generate', 'gen'], 'sign', 'clean', 'release'],
+  commands: ['verify', ['generate', 'gen'], 'sign', 'clean', 'release', 'all'],
   single: ['--dir', '--sri', '--pass', '--key', '--username'],
   default: {
     '--dir': path.join(process.cwd(), 'docs'),
