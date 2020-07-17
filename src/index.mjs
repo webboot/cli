@@ -13,6 +13,10 @@ export const boot = async (state, commands) => {
     state.sri = path.join(state.dir, state.sri)
   }
 
+  if (!state.username) {
+    throw new Error('Username missing.')
+  }
+
   if (commands.clean) {
     // delete the sri-hashes.json file
     await webboot.clean(state)
@@ -30,7 +34,7 @@ export const boot = async (state, commands) => {
   // always verify sriHashes before continuing
   await webboot.verify(state)
 
-  if (commands.sign || commands.release) {
+  if (commands.sign || commands.release || commands.all) {
     // sign the page using local gpg lib
     state.signed = await webboot.sign(state)
 
