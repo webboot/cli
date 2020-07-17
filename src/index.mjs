@@ -46,7 +46,7 @@ export const boot = async (state, commands) => {
 webboot all task used, but not the release task.
 
 please run webboot release to also publish your changes.
-      `)
+`)
     }
   }
 

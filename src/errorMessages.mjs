@@ -1,4 +1,3 @@
-import error from '@magic/error'
 import is from '@magic/types'
 
 export const mapMessageToError = ([name, msg]) => [name, is.fn(msg) ? msg : [msg, name]]

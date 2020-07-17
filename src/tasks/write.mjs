@@ -14,7 +14,7 @@ export const write = async state => {
 
   await fs.writeFile(state.sri, hashString)
 
-  log.timeTaken(startTime, '@webboot/write took:')
+  log.timeTaken(startTime, `${libName} took:`)
 
   return JSON.parse(hashString)
 }

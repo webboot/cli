@@ -3,7 +3,6 @@
 import path from 'path'
 
 import cli from '@magic/cli'
-import error from '@magic/error'
 import log from '@magic/log'
 import is from '@magic/types'
 
