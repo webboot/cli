@@ -20,7 +20,7 @@ export const prepare = async () => {
 
   const wantsToImport = await cli.prompt('import @webboot public key now? y/N: ', { yesNo: true })
   if (!wantsToImport) {
-    log.error('E_KEY_IMPORT', "webboot must import it's public key to your pgp keyring to work")
+    log.error('E_KEY_IMPORT_ABORT', "webboot must import it's public key to your pgp keyring to work")
     process.exit(1)
   }
 
@@ -34,10 +34,10 @@ export const prepare = async () => {
   )
 
   try {
-    const imported = await crypto.gpg(`--import ${webbootAsc}`)
-    console.log({ imported })
+    await crypto.gpg(`--import ${webbootAsc}`)
+    log.info('imported the webboot pgp key.')
   } catch (e) {
-    console.log('ee', e)
+    log.error('E_KEY_IMPORT', 'Error importing the webboot pgp key', e)
   }
 
   log.timeTaken(startTime, '@webboot/sign took:')
