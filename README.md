@@ -93,5 +93,12 @@ update dependencies
 #### 0.0.1-alpha.4
 bump required node version to 14.2.0
 
+#### 0.0.1-alpha.5
+* update dependencies
+
+#### 0.0.1-alpha.6
+* update deps
+* tasks/prepare: better pgp key import messages
+
 #### 0.0.1 - unreleased
 first release
