@@ -100,5 +100,8 @@ bump required node version to 14.2.0
 * update deps
 * tasks/prepare: better pgp key import messages
 
+#### 0.0.1-alpha.7
+* update dependencies
+
 #### 0.0.1 - unreleased
 first release
