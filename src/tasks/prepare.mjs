@@ -20,7 +20,10 @@ export const prepare = async () => {
 
   const wantsToImport = await cli.prompt('import @webboot public key now? y/N: ', { yesNo: true })
   if (!wantsToImport) {
-    log.error('E_KEY_IMPORT_ABORT', "webboot must import it's public key to your pgp keyring to work")
+    log.error(
+      'E_KEY_IMPORT_ABORT',
+      "webboot must import it's public key to your pgp keyring to work",
+    )
     process.exit(1)
   }
 
