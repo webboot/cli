@@ -107,6 +107,5 @@ bump required node version to 14.2.0
 * update dependencies
 * update docs
 
-
 #### 0.0.1 - unreleased
 first release
