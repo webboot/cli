@@ -18,12 +18,16 @@ const cliArgs = {
     ['--username', '--user', '--user-name', '--name', '-u', '-n'],
     ['--secrets-file', '--secret-file', '--pass-file'],
     ['--homepage', '--url', '--domain'],
+    ['--dry-run', '--dry'],
+    ['--api-url'],
   ],
   commands: ['verify', ['generate', 'gen'], 'sign', 'clean', 'release', 'all'],
-  single: ['--dir', '--sri', '--pass', '--key', '--username'],
+  single: ['--dir', '--sri', '--pass', '--key', '--username', '--dry-run', '--api-url'],
   default: {
     '--dir': path.join(process.cwd(), 'docs'),
     '--sri': 'sri-hashes.json',
+    '--dry-run': false,
+    '--api-url': 'https://api.webboot.org'
   },
   help: {
     name: 'webboot',
@@ -35,6 +39,8 @@ const cliArgs = {
       '--key': 'sign and release: pub-key file. absolute path.',
       '--passphrase': 'sign and release: passphrase to use locally. NOT THE GIT PASSWORD!',
       '--user': 'sign and release: the name to publish as.',
+      '--dry-run': 'do not actually change anything.',
+      '--api-url': 'host to use for api requests',
     },
     commands: {
       verify: 'verify the sri-hashes.json in --dir is correct',
