@@ -47,6 +47,5 @@ export const release = async state => {
     }
   }
 
-
   log.timeTaken(startTime, `${libName} took:`)
 }

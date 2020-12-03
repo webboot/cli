@@ -27,7 +27,7 @@ const cliArgs = {
     '--dir': path.join(process.cwd(), 'docs'),
     '--sri': 'sri-hashes.json',
     '--dry-run': false,
-    '--api-url': 'https://api.webboot.org'
+    '--api-url': 'https://api.webboot.org',
   },
   help: {
     name: 'webboot',

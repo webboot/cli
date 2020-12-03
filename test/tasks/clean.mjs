@@ -65,6 +65,6 @@ export default [
     fn: async () => await tryDryRun(path.join(testDir + 2, sriFileName), { dryRun: true }),
     before: before(3),
     expect: true,
-    info: 'clean does not delete if dryRun is true'
-  }
+    info: 'clean does not delete if dryRun is true',
+  },
 ]
