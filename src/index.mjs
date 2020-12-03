@@ -40,7 +40,7 @@ export const boot = async (state, commands) => {
 
     if (commands.release) {
       // release signed hashes to the @webboot network.
-      state.release = await webboot.release(state.signed)
+      state.release = await webboot.release(state)
     } else if (commands.all) {
       console.log(`
 webboot all task used, but not the release task.

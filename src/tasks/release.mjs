@@ -5,7 +5,8 @@ import webboot from '@webboot/core'
 
 const libName = '@webboot/release'
 
-export const release = async signed => {
+export const release = async state => {
+  const { signed, apiUrl } = state
   const startTime = log.hrtime()
 
   log.success('\n@webboot has collected all needed data.\n')
@@ -28,6 +29,8 @@ export const release = async signed => {
   const wantsToSend = await cli.prompt(releasePrompt, { yesNo: true })
 
   if (wantsToSend) {
+    log.error('E_NOT_IMPLEMENTED', `${libName} not implemented yet.`)
+
     const body = JSON.stringify(signed)
 
     const options = {
@@ -38,12 +41,11 @@ export const release = async signed => {
       },
     }
 
-    const response = await webboot.httpRequest('http://localhost:8080/api/v1/release/', options)
+    const response = await webboot.httpRequest(`${apiUrl}/api/v1/release`, options)
 
     log('api response:', response)
   }
 
-  log.error('E_NOT_IMPLEMENTED', `${libName} not implemented yet.`)
 
   log.timeTaken(startTime, `${libName} took:`)
 }
