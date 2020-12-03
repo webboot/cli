@@ -13,8 +13,7 @@ const cliArgs = {
   options: [
     ['--help', '-help', 'help', '--h', '-h'],
     ['--dir', '--in', '-d'],
-    ['--sri', '--sriHashFile', '--sri-hash-file'],
-    ['--no-write', '--noWrite'],
+    ['--sri', '--sri-hash-file'],
     ['--username', '--user', '--user-name', '--name', '-u', '-n'],
     ['--secrets-file', '--secret-file', '--pass-file'],
     ['--homepage', '--url', '--domain'],
@@ -26,7 +25,7 @@ const cliArgs = {
   default: {
     '--dir': path.join(process.cwd(), 'docs'),
     '--sri': 'sri-hashes.json',
-    '--dry-run': false,
+    // '--dry-run': false,
     '--api-url': 'https://api.webboot.org',
   },
   help: {
@@ -35,7 +34,6 @@ const cliArgs = {
     options: {
       '--dir': 'working directory for webboot.',
       '--sri': 'the name of the sri-hashes.json file generated. relative to --dir',
-      '--no-write': 'do not write sri-hashes.json file',
       '--key': 'sign and release: pub-key file. absolute path.',
       '--passphrase': 'sign and release: passphrase to use locally. NOT THE GIT PASSWORD!',
       '--user': 'sign and release: the name to publish as.',
@@ -48,6 +46,7 @@ const cliArgs = {
       sign: 'sign the sri-hashes.json using your public ssh key and a passphrase.',
       publish: 'publish the current version of sri-hashes for server verification',
       clean: 'delete sri-hashes.json file',
+      release: 'WIP: release the hashes to webboot.org.'
     },
     example: `
 # generate sri-hash.json for the docs directory
@@ -72,6 +71,8 @@ webboot clean
 
 const run = async () => {
   const { args, commands } = cli(cliArgs)
+
+  args.dryRun = args.hasOwnProperty('dryRun')
 
   try {
     const booted = await boot(args, commands)
