@@ -6,7 +6,7 @@ import log from '@magic/log'
 import crypto from '@webboot/crypto'
 import { fingerprint } from '@webboot/keys'
 
-export const prepare = async () => {
+export const prepare = async state => {
   const startTime = log.hrtime()
 
   log.success('welcome to @webboot\n')
@@ -37,7 +37,9 @@ export const prepare = async () => {
   )
 
   try {
-    await crypto.gpg(`--import ${webbootAsc}`)
+    if (!state.dryRun) {
+      await crypto.gpg(`--import ${webbootAsc}`)
+    }
     log.info('imported the webboot pgp key.')
   } catch (e) {
     log.error('E_KEY_IMPORT', 'Error importing the webboot pgp key', e)

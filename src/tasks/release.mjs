@@ -41,9 +41,10 @@ export const release = async state => {
       },
     }
 
-    const response = await webboot.httpRequest(`${apiUrl}/api/v1/release`, options)
-
-    log('api response:', response)
+    if (!state.dryRun) {
+      const response = await webboot.httpRequest(`${apiUrl}/api/v1/release`, options)
+      log('api response:', response)
+    }
   }
 
 

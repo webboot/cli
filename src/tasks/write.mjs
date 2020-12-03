@@ -12,7 +12,9 @@ export const write = async state => {
 
   const hashString = `{\n${hashes}\n}`
 
-  await fs.writeFile(state.sri, hashString)
+  if (!state.dryRun) {
+    await fs.writeFile(state.sri, hashString)
+  }
 
   log.timeTaken(startTime, `${libName} took:`)
 
