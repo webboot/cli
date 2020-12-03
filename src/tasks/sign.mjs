@@ -12,7 +12,7 @@ const libName = '@webboot/sign'
 export const sign = async state => {
   const startTime = log.hrtime()
 
-  const email = await webboot.getEmail(state)
+  // const email = await webboot.getEmail(state)
 
   const git = await webboot.getGitHost(state)
 
@@ -48,5 +48,6 @@ export const sign = async state => {
     signed: toSign,
     meta,
     metaSig,
+    domain: host,
   }
 }
