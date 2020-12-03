@@ -107,5 +107,10 @@ bump required node version to 14.2.0
 * update dependencies
 * update docs
 
+#### 0.0.1-alpha.9
+* update dependencies
+* update some flows to give better messages
+* update cli flags, add --dry-run, --api-url
+
 #### 0.0.1 - unreleased
 first release
