@@ -23,7 +23,7 @@ export const boot = async (state, commands) => {
   }
 
   // import @webboot public key
-  await webboot.prepare()
+  await webboot.prepare(state)
 
   // always generate newest state
   state.files = await webboot.generate(state)
