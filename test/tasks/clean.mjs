@@ -2,7 +2,7 @@ import path from 'path'
 
 import { fs, is, tryCatch } from '@magic/test'
 
-import { errorMessages } from '../../src/errorMessages.mjs'
+// import { errorMessages } from '../../src/errorMessages.mjs'
 
 import { clean } from '../../src/tasks/clean.mjs'
 
@@ -10,29 +10,42 @@ const testDir = path.join(process.cwd(), '.__test__clean__')
 
 const sriFileName = 'sri-hashes.json'
 
-const sriFullPath = path.join(testDir, sriFileName)
-
 const before = id => async () => {
   let dir = testDir + id
 
   await fs.mkdirp(dir)
 
   const sri = path.join(dir, sriFileName)
-  const w = await fs.writeFile(sri, 'ohai')
+  await fs.writeFile(sri, 'ohai')
 
   return async () => {
     await fs.rmrf(dir)
   }
 }
 
-const tryDelete = async p => {
-  const existsBefore = await fs.exists(p)
+const tryDelete = async sri => {
+  const existsBefore = await fs.exists(sri)
 
-  const deleted = await clean({ sri: p })
+  const deleted = await clean({ sri })
 
-  const existsAfter = await fs.exists(p)
+  const existsAfter = await fs.exists(sri)
 
   return existsBefore && deleted && !existsAfter
+}
+
+const tryDryRun = async sri => {
+  const existsBefore = await fs.exists(sri)
+
+  const opts = {
+    dryRun: true,
+    sri,
+  }
+
+  const deleted = await clean(opts)
+
+  const existsAfter = await fs.exists(sri)
+
+  return existsBefore && !deleted && existsAfter
 }
 
 export default [
@@ -48,4 +61,10 @@ export default [
     expect: true,
     info: 'clean errors on file with relative path',
   },
+  {
+    fn: async () => await tryDryRun(path.join(testDir + 2, sriFileName), { dryRun: true }),
+    before: before(3),
+    expect: true,
+    info: 'clean does not delete if dryRun is true'
+  }
 ]
