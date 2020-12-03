@@ -1,7 +1,8 @@
 import fs from '@magic/fs'
 
-export const clean = state => {
+export const clean = async state => {
   if (!state.dryRun) {
-    fs.rmrf(state.sri)
+    const result = await fs.rmrf(state.sri)
+    return result
   }
 }
